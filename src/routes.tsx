@@ -1,4 +1,5 @@
 import Home from './Pages/Home'
+import Register from './Pages/Register'
 import Shorts from './Pages/Shorts'
 import Uploads from './Pages/Uploads'
 import PageVideos from './Pages/Videos'
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="uploads" element={<Uploads />} />
         <Route path="page-videos/:id" element={<PageVideos />} />
         <Route path="shorts/:id" element={<Shorts />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </Router>
   )

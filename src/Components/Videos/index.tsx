@@ -21,15 +21,16 @@ interface User {
 
 const Videos: React.FC = () => {
   const navigate = useNavigate()
-  const [users, setUsers] = useState<User[]>([])
+  const [videos, setVideos] = useState<User[]>([])
   const [viewsAmount, setViewsAmount] = useState<number | null>(null)
   const [selectedVideo, setSelectedVideo] = useState({})
   const [message, setMessage] = useState<string>('')
 
   const apiVideos = async () => {
     try {
-      const res: AxiosResponse = await axios.get('http://localhost:8080/users')
-      setUsers(res.data.users as User[])
+      const res: AxiosResponse = await axios.get('http://localhost:8080/videos')
+      console.log(res)
+      setVideos(res.data.videos as User[])
 
       if (viewsAmount === null) {
         setViewsAmount(0)
@@ -43,7 +44,7 @@ const Videos: React.FC = () => {
       const updatedViews = viewsAmount !== null ? viewsAmount + 1 : 1
 
       const res: AxiosResponse = await axios.put(
-        `http://localhost:8080/videos/${user.id}/update-views`,
+        `http://localhost:8080/video/${user.id}/update-views`,
         { viewsAmount: updatedViews }
       )
 
@@ -62,7 +63,7 @@ const Videos: React.FC = () => {
   return (
     <>
       <SectionVideos>
-        {users.map((user: User) => (
+        {videos.map((user: User) => (
           <VideoContainer onClick={() => updateViews(user)} key={user.id}>
             <ThumbnailContainer className="thumbnail-container">
               <Thumbnail src={user.thumbnail} alt="Thumbnail do video" />

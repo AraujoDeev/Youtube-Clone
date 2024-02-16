@@ -12,8 +12,8 @@ const Menu = () => {
   const [id, setId] = useState<number>()
   const apiVideos = async () => {
     try {
-      const res: AxiosResponse = await axios.get('http://localhost:8080/users')
-      setId(res.data.users[0].id)
+      const res: AxiosResponse = await axios.get('http://localhost:8080/videos')
+      setId(res.data.videos[0].id)
     } catch (err: AxiosError | any) {
       if (err.response) {
       } else {

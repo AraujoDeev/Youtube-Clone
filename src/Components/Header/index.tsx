@@ -51,7 +51,7 @@ const Header = () => {
             </ButtonIcon>
           </div>
           <div className="profileLogged">
-            <ButtonIcon>
+            <ButtonIcon title="Fazer login">
               <AccountCircleOutlinedIcon />
             </ButtonIcon>
           </div>

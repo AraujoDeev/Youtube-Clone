@@ -40,9 +40,10 @@ const PageVideos = () => {
     const apiVideos = async () => {
       try {
         const res: AxiosResponse = await axios.get(
-          `http://localhost:8080/users/${id}`
+          `http://localhost:8080/video/${id}`
         )
-        setSelectedVideo(res.data.users as User)
+        console.log(res)
+        setSelectedVideo(res.data.video as User)
       } catch (err: AxiosError | any) {
         if (err.response) {
           setMessage(err.response.data.message)
@@ -68,7 +69,7 @@ const PageVideos = () => {
           selectedVideo.likesAmount !== null ? selectedVideo.likesAmount + 1 : 1
 
         const res: AxiosResponse = await axios.put(
-          `http://localhost:8080/videos/${id}/update-likes`,
+          `http://localhost:8080/video/${id}/update-likes`,
           { likesAmount: updatedLikes }
         )
 

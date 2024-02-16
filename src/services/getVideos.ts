@@ -11,8 +11,8 @@ export interface User {
 
 const getVideos = async (videoId?: string) => {
   try {
-    const res = await API.get('/users', { params: { id: videoId } })
-    return res.data.users
+    const res = await API.get('/videos', { params: { id: videoId } })
+    return res.data.videos
   } catch (err: AxiosError | any) {
     console.error('Erro na requisição de dados do usuário', err)
     return []

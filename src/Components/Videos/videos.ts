@@ -19,8 +19,8 @@ export const SectionVideos = styled.div`
 `
 
 export const VideoContainer = styled.div`
-  height: auto;
-  width: auto;
+  height: 350px;
+  width: 300px;
   cursor: pointer;
 `
 
