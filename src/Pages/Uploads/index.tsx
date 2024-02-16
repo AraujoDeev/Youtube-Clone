@@ -17,8 +17,6 @@ import axios from 'axios'
 import { FileUpload } from '@mui/icons-material'
 import Templates from '../../Components/Templates'
 
-import { MdOutlineDangerous } from 'react-icons/md'
-
 import { useNavigate } from 'react-router-dom'
 
 const Uploads = () => {

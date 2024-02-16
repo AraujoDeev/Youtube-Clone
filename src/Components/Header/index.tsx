@@ -51,7 +51,7 @@ const Header = () => {
             </ButtonIcon>
           </div>
           <div className="profileLogged">
-            <ButtonIcon title="Fazer login">
+            <ButtonIcon onClick={() => navigate('/login')} title="Fazer login">
               <AccountCircleOutlinedIcon />
             </ButtonIcon>
           </div>

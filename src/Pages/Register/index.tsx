@@ -1,15 +1,35 @@
 import { useState } from 'react'
 import Templates from '../../Components/Templates'
-import { Button, Container, Form, Input, Title } from './register'
+import {
+  ActionsButtons,
+  Backdrop,
+  Button,
+  Buttons,
+  CheckIcon,
+  Container,
+  ErrorIcon,
+  Form,
+  Input,
+  Modal,
+  Title,
+} from './register'
 import { createUser } from '../../services/newUser'
+import { useNavigate } from 'react-router-dom'
 
 export default function Register() {
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     first_name: '',
     last_name: '',
     email: '',
     password: '',
     username: '',
+  })
+  const [backdrop, setBackdrop] = useState<boolean>(false)
+  const [message, setMessage] = useState({
+    message: '',
+    icon: '',
+    type: '',
   })
 
   const user = { ...form }
@@ -26,10 +46,23 @@ export default function Register() {
 
     try {
       const response = await createUser(user)
-      console.log('Usuário criado com sucesso:', response)
+      setMessage({
+        message: 'Usuário criado com sucesso!',
+        type: 'success',
+        icon: '',
+      })
     } catch (error) {
-      console.error('Erro ao criar usuário:', 'erro: ', error)
+      setMessage({
+        message: 'Algo deu errado!',
+        icon: '',
+        type: 'danger',
+      })
     }
+    setBackdrop(true)
+  }
+
+  const closeModal = () => {
+    setBackdrop(false)
   }
 
   return (
@@ -89,6 +122,27 @@ export default function Register() {
           <Button type="submit">Sign Up</Button>
         </Form>
       </Container>
+      {backdrop && (
+        <Backdrop>
+          <Modal>
+            {message.type == 'success' && (
+              <>
+                <p>{message.message}</p>
+                <CheckIcon />
+              </>
+            )}
+            {message.type != 'success' && (
+              <>
+                <p>{message.message}</p>
+                <ErrorIcon />
+              </>
+            )}
+            <ActionsButtons>
+              <Buttons onClick={() => navigate('/login')}>Login</Buttons>
+            </ActionsButtons>
+          </Modal>
+        </Backdrop>
+      )}
     </Templates>
   )
 }
