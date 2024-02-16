@@ -8,7 +8,6 @@ export const SecondaryVideosContainer = styled.div`
   align-items: center;
   margin-right: 60px;
   padding: 20px 0 0 0;
-  border: 2px solid red;
 `
 export const SecondaryThumbnail = styled.div`
   width: 100%;
