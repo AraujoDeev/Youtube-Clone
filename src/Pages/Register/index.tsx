@@ -44,20 +44,24 @@ export default function Register() {
       username: '',
     })
 
-    try {
-      const response = await createUser(user)
+    const response = await createUser(user)
+    if (response.status == 201) {
+      console.log(response)
       setMessage({
-        message: 'Usuário criado com sucesso!',
+        message: `Account created for ${user.username}. Please log in to continue`,
         type: 'success',
         icon: '',
       })
-    } catch (error) {
+    }
+
+    if (response.status == 422) {
       setMessage({
-        message: 'Algo deu errado!',
+        message: 'Use another email',
         icon: '',
         type: 'danger',
       })
     }
+
     setBackdrop(true)
   }
 
@@ -129,17 +133,17 @@ export default function Register() {
               <>
                 <p>{message.message}</p>
                 <CheckIcon />
+                <Buttons onClick={() => navigate('/login')}>Login</Buttons>
               </>
             )}
             {message.type != 'success' && (
               <>
                 <p>{message.message}</p>
                 <ErrorIcon />
+                <Buttons onClick={closeModal}>Try again</Buttons>
               </>
             )}
-            <ActionsButtons>
-              <Buttons onClick={() => navigate('/login')}>Login</Buttons>
-            </ActionsButtons>
+            <ActionsButtons></ActionsButtons>
           </Modal>
         </Backdrop>
       )}

@@ -12,7 +12,17 @@ export const createUser = async (userData: ICreateUser) => {
   try {
     const response = await API.post('/register', userData)
     return response
-  } catch (err) {
-    console.log(err)
+  } catch (error: any) {
+    if (error.code == 'ERR_BAD_REQUEST') {
+      return {
+        message: error.response.data.msg,
+        status: 422,
+      }
+    }
+    const erro = {
+      message: error.response.data,
+      status: error.response.status,
+    }
+    return erro
   }
 }
