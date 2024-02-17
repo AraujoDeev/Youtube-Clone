@@ -19,7 +19,8 @@ import {
 import ThumbUpIcon from '@mui/icons-material/ThumbUp'
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt'
 import SecondaryVideos from '../../Components/SecondaryVideos'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useAuth } from '../../context/AuthProvider/useAuth'
 
 interface User {
   id: number
@@ -31,6 +32,8 @@ interface User {
 }
 
 const PageVideos = () => {
+  const navigate = useNavigate()
+  const auth = useAuth()
   const { id } = useParams()
   const [selectedVideo, setSelectedVideo] = useState<User | null>(null)
   const [message, setMessage] = useState<string>('')
@@ -62,6 +65,10 @@ const PageVideos = () => {
   }
 
   const updateLikes = async (id: number) => {
+    if (!auth?.token) {
+      alert('You must be logged in to see the video')
+      return navigate('/login')
+    }
     try {
       if (selectedVideo) {
         const updatedLikes =

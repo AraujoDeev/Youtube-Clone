@@ -17,8 +17,13 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthProvider/useAuth'
 const Header = () => {
   const navigate = useNavigate()
+  const auth = useAuth()
+  console.log(auth.username)
+
+  const username = auth.username
 
   return (
     <HeaderStyle>
@@ -51,7 +56,10 @@ const Header = () => {
             </ButtonIcon>
           </div>
           <div className="profileLogged">
-            <ButtonIcon onClick={() => navigate('/login')} title="Fazer login">
+            <ButtonIcon
+              onClick={() => navigate('/login')}
+              title={username ? username : 'Entrar'}
+            >
               <AccountCircleOutlinedIcon />
             </ButtonIcon>
           </div>

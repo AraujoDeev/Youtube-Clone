@@ -11,6 +11,7 @@ import {
   Views,
 } from './videos'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthProvider/useAuth'
 
 interface User {
   id: number

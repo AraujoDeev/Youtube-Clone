@@ -14,8 +14,10 @@ import {
   Paragraph,
   TwitterIcon,
 } from './login'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  const navigate = useNavigate()
   const [form, setForm] = useState({ email: '', password: '' })
   const auth = useAuth()
 
@@ -28,6 +30,7 @@ const Login = () => {
       console.log(err)
     }
     setForm({ email: '', password: '' })
+    navigate('/')
   }
 
   return (
