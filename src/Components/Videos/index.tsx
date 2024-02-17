@@ -29,7 +29,6 @@ const Videos: React.FC = () => {
   const apiVideos = async () => {
     try {
       const res: AxiosResponse = await axios.get('http://localhost:8080/videos')
-      console.log(res)
       setVideos(res.data.videos as User[])
 
       if (viewsAmount === null) {

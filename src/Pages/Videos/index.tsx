@@ -42,7 +42,6 @@ const PageVideos = () => {
         const res: AxiosResponse = await axios.get(
           `http://localhost:8080/video/${id}`
         )
-        console.log(res)
         setSelectedVideo(res.data.video as User)
       } catch (err: AxiosError | any) {
         if (err.response) {

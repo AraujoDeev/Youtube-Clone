@@ -46,7 +46,6 @@ export default function Register() {
 
     const response = await createUser(user)
     if (response.status == 201) {
-      console.log(response)
       setMessage({
         message: `Account created for ${user.username}. Please log in to continue`,
         type: 'success',

@@ -25,12 +25,10 @@ const SecondaryVideos = () => {
   const [videos, setVideos] = useState<User[]>([])
   const [message, setMessage] = useState<string>('')
   const [mainVideoId, setMainVideoId] = useState<number>(0)
-  console.log(videos)
 
   const apiVideos = async () => {
     try {
       const res: AxiosResponse = await axios.get('http://localhost:8080/videos')
-      console.log(res)
       const data = res.data.videos as User[]
 
       if (data.length > 0) {
