@@ -14,10 +14,8 @@ import {
   Paragraph,
   TwitterIcon,
 } from './login'
-import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-  const navigate = useNavigate()
   const [form, setForm] = useState({ email: '', password: '' })
   const auth = useAuth()
 
@@ -26,11 +24,13 @@ const Login = () => {
 
     try {
       await auth.authenticate(form.email, form.password)
-    } catch (err) {
-      console.log(err)
+      setForm({
+        email: '',
+        password: '',
+      })
+    } catch (err: any) {
+      console.error('Erro de autenticação:', err)
     }
-    setForm({ email: '', password: '' })
-    navigate('/')
   }
 
   return (

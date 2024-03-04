@@ -50,7 +50,7 @@ const SecondaryVideos = () => {
     try {
       const updatedViews = viewsAmount + 1
 
-      await axios.put(`http://localhost:8080/videos/${id}/update-views`, {
+      await axios.put(`http://localhost:8080/video/${id}/update-views`, {
         viewsAmount: updatedViews,
       })
 

@@ -11,7 +11,6 @@ import {
   Views,
 } from './videos'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/AuthProvider/useAuth'
 
 interface User {
   id: number
@@ -23,8 +22,9 @@ interface User {
 const Videos: React.FC = () => {
   const navigate = useNavigate()
   const [videos, setVideos] = useState<User[]>([])
+  console.log(videos)
+  const [videoPesquisado, setVideoPesquisado] = useState('')
   const [viewsAmount, setViewsAmount] = useState<number | null>(null)
-  const [selectedVideo, setSelectedVideo] = useState({})
   const [message, setMessage] = useState<string>('')
 
   const apiVideos = async () => {
@@ -38,6 +38,11 @@ const Videos: React.FC = () => {
     } finally {
     }
   }
+
+  const filteredVideo =
+    videoPesquisado !== ''
+      ? videos.filter((item) => item.title.includes(videoPesquisado))
+      : videos
 
   const updateViews = async (user: any) => {
     try {

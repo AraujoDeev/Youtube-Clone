@@ -11,8 +11,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 const App = () => {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="uploads" element={<Uploads />} />
@@ -21,8 +21,8 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Routes>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   )
 }
 

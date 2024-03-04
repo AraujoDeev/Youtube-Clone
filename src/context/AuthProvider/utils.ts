@@ -20,7 +20,20 @@ export async function loginRequest(email: string, password: string) {
     const request = await API.post('/login', { email, password })
 
     return request.data
-  } catch (err) {
-    return null
+  } catch (err: any) {
+    if (err.response.status === 404) {
+      return {
+        message: 'E-mail e/ou senha invalida',
+        status: 404,
+        severity: 'error',
+      }
+    }
+    if (err.response.status === 422) {
+      return {
+        message: `${err.response.data.msg}`,
+        status: 404,
+        severity: 'error',
+      }
+    }
   }
 }

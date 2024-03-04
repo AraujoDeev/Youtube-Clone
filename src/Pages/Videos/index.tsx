@@ -66,7 +66,7 @@ const PageVideos = () => {
 
   const updateLikes = async (id: number) => {
     if (!auth?.token) {
-      alert('You must be logged in to see the video')
+      alert('Você precisa estar logado para curtir o video')
       return navigate('/login')
     }
     try {

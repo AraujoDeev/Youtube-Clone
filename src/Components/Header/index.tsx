@@ -14,14 +14,14 @@ import darkLogo from '../../assets/images/logo-dark.png'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined'
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined'
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
+
 import SearchIcon from '@mui/icons-material/Search'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthProvider/useAuth'
+import PopoverPopupState from '../Popover'
 const Header = () => {
   const navigate = useNavigate()
   const auth = useAuth()
-  console.log(auth.username)
 
   const username = auth.username
 
@@ -56,12 +56,7 @@ const Header = () => {
             </ButtonIcon>
           </div>
           <div className="profileLogged">
-            <ButtonIcon
-              onClick={() => navigate('/login')}
-              title={username ? username : 'Entrar'}
-            >
-              <AccountCircleOutlinedIcon />
-            </ButtonIcon>
+            <PopoverPopupState username={username} />
           </div>
         </Icons>
       </Profile>
